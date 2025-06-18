@@ -8,10 +8,7 @@ scrape_configs:
     static_configs:
       - targets: ['172.17.0.1:8081']
         labels:
-          service: 'withdraw-service'
+          service: 'producer-service'
       - targets: [ '172.17.0.1:8082' ]
         labels:
-          service: 'transfer-service'
-      - targets: [ '172.17.0.1:8083' ]
-        labels:
-          service: 'deposit-service'
+          service: 'consumer-service'
