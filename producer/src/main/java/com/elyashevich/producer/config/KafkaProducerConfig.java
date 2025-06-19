@@ -11,6 +11,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.transaction.KafkaTransactionManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,5 +47,11 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, MessageModel> kafkaTemplate(ProducerFactory<String, MessageModel> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
+    }
+
+    @Bean
+    public KafkaTransactionManager<String, MessageModel> kafkaTransactionManager(
+            ProducerFactory<String, MessageModel> producerFactory) {
+        return new KafkaTransactionManager<>(producerFactory);
     }
 }

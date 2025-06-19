@@ -1,5 +1,6 @@
 package com.elyashevich.producer.controller;
 
+import com.elyashevich.producer.dto.ConditionDto;
 import com.elyashevich.producer.service.MessageProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ public class MessageController {
     private final MessageProducerService messageProducerService;
 
     @PostMapping
-    public void sendMessage(@RequestBody String isRollback) {
-        this.messageProducerService.sendMessagesWithTransaction(Boolean.parseBoolean(isRollback));
+    public void sendMessage(@RequestBody ConditionDto conditionDto) {
+        this.messageProducerService.sendMessagesWithTransaction(conditionDto.shouldRollback());
     }
 }
